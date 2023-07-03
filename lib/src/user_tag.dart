@@ -1,4 +1,4 @@
-import 'package:linkify/linkify.dart';
+import 'package:linkify_labhouse/linkify.dart';
 
 /// For details on how this RegEx works, go to this link.
 /// https://regex101.com/r/QN046t/1
@@ -74,8 +74,5 @@ class UserTagElement extends LinkableElement {
   int get hashCode => Object.hash(text, originText, url, userTag);
 
   @override
-  bool equals(other) =>
-      other is UserTagElement &&
-      super.equals(other) &&
-      other.userTag == userTag;
+  bool equals(other) => other is UserTagElement && super.equals(other) && other.userTag == userTag;
 }

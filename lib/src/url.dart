@@ -1,4 +1,4 @@
-import 'package:linkify/linkify.dart';
+import 'package:linkify_labhouse/linkify.dart';
 
 final _urlRegex = RegExp(
   r'^(.*?)((?:https?:\/\/|www\.)[^\s/$.?#].[^\s]*)',

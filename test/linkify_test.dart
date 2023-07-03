@@ -1,5 +1,5 @@
 import 'package:collection/collection.dart';
-import 'package:linkify/linkify.dart';
+import 'package:linkify_labhouse/linkify.dart';
 import 'package:test/test.dart';
 
 final listEqual = const ListEquality().equals;
@@ -37,8 +37,7 @@ void main() {
     );
 
     expectListEqual(
-      linkify("https://www.example.com",
-          options: LinkifyOptions(removeWww: true)),
+      linkify("https://www.example.com", options: LinkifyOptions(removeWww: true)),
       [UrlElement("https://www.example.com", "example.com")],
     );
   });
@@ -123,11 +122,7 @@ void main() {
   test('Parses email and link', () {
     expectListEqual(
       linkify("person@example.com at https://google.com"),
-      [
-        EmailElement("person@example.com"),
-        TextElement(" at "),
-        UrlElement("https://google.com", "google.com")
-      ],
+      [EmailElement("person@example.com"), TextElement(" at "), UrlElement("https://google.com", "google.com")],
     );
   });
 
@@ -169,18 +164,12 @@ void main() {
 
   test('Parses both loose and not URL on the same text', () {
     expectListEqual(
-      linkify('example.com http://example.com',
-          options: LinkifyOptions(looseUrl: true)),
-      [
-        UrlElement('http://example.com', 'example.com'),
-        TextElement(' '),
-        UrlElement('http://example.com', 'example.com')
-      ],
+      linkify('example.com http://example.com', options: LinkifyOptions(looseUrl: true)),
+      [UrlElement('http://example.com', 'example.com'), TextElement(' '), UrlElement('http://example.com', 'example.com')],
     );
 
     expectListEqual(
-      linkify(
-          'This text mixes both loose urls like example.com and not loose urls like http://example.com and http://another.example.com',
+      linkify('This text mixes both loose urls like example.com and not loose urls like http://example.com and http://another.example.com',
           options: LinkifyOptions(looseUrl: true)),
       [
         TextElement('This text mixes both loose urls like '),
@@ -196,10 +185,7 @@ void main() {
   test('Parses ending period', () {
     expectListEqual(
       linkify("https://example.com/test."),
-      [
-        UrlElement("https://example.com/test", "example.com/test"),
-        TextElement(".")
-      ],
+      [UrlElement("https://example.com/test", "example.com/test"), TextElement(".")],
     );
   });
 

@@ -1,19 +1,16 @@
-import 'package:linkify/src/email.dart';
-import 'package:linkify/src/url.dart';
+import 'package:linkify_labhouse/src/email.dart';
+import 'package:linkify_labhouse/src/url.dart';
 
-export 'package:linkify/src/email.dart' show EmailLinkifier, EmailElement;
-export 'package:linkify/src/url.dart' show UrlLinkifier, UrlElement;
-export 'package:linkify/src/user_tag.dart'
-    show UserTagLinkifier, UserTagElement;
-export 'package:linkify/src/phone_number.dart'
-    show PhoneNumberLinkifier, PhoneNumberElement;
+export 'package:linkify_labhouse/src/email.dart' show EmailLinkifier, EmailElement;
+export 'package:linkify_labhouse/src/phone_number.dart' show PhoneNumberLinkifier, PhoneNumberElement;
+export 'package:linkify_labhouse/src/url.dart' show UrlLinkifier, UrlElement;
+export 'package:linkify_labhouse/src/user_tag.dart' show UserTagLinkifier, UserTagElement;
 
 abstract class LinkifyElement {
   final String text;
   final String originText;
 
-  LinkifyElement(this.text, [String? originText])
-      : originText = originText ?? text;
+  LinkifyElement(this.text, [String? originText]) : originText = originText ?? text;
 
   @override
   bool operator ==(other) => equals(other);
@@ -27,8 +24,7 @@ abstract class LinkifyElement {
 class LinkableElement extends LinkifyElement {
   final String url;
 
-  LinkableElement(String? text, this.url, [String? originText])
-      : super(text ?? url, originText);
+  LinkableElement(String? text, this.url, [String? originText]) : super(text ?? url, originText);
 
   @override
   bool operator ==(other) => equals(other);
@@ -37,8 +33,7 @@ class LinkableElement extends LinkifyElement {
   int get hashCode => Object.hash(text, originText, url);
 
   @override
-  bool equals(other) =>
-      other is LinkableElement && super.equals(other) && other.url == url;
+  bool equals(other) => other is LinkableElement && super.equals(other) && other.url == url;
 }
 
 /// Represents an element containing text
@@ -63,8 +58,7 @@ class TextElement extends LinkifyElement {
 abstract class Linkifier {
   const Linkifier();
 
-  List<LinkifyElement> parse(
-      List<LinkifyElement> elements, LinkifyOptions options);
+  List<LinkifyElement> parse(List<LinkifyElement> elements, LinkifyOptions options);
 }
 
 class LinkifyOptions {

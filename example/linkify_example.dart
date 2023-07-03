@@ -1,4 +1,4 @@
-import 'package:linkify/linkify.dart';
+import 'package:linkify_labhouse/linkify.dart';
 
 void main() {
   print(linkify("Made by https://cretezy.com person@example.com"));

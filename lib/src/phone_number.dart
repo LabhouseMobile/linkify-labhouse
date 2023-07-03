@@ -1,4 +1,4 @@
-import 'package:linkify/linkify.dart';
+import 'package:linkify_labhouse/linkify.dart';
 
 final _phoneNumberRegex = RegExp(
   r'^(.*?)((tel:)?[+]*[\s/0-9]{8,15})',
@@ -67,6 +67,5 @@ class PhoneNumberElement extends LinkableElement {
   int get hashCode => Object.hash(text, originText, url, phoneNumber);
 
   @override
-  bool equals(other) =>
-      other is PhoneNumberElement && phoneNumber == other.phoneNumber;
+  bool equals(other) => other is PhoneNumberElement && phoneNumber == other.phoneNumber;
 }

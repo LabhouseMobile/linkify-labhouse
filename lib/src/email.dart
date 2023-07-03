@@ -1,4 +1,4 @@
-import 'package:linkify/linkify.dart';
+import 'package:linkify_labhouse/linkify.dart';
 
 final _emailRegex = RegExp(
   r'^(.*?)((mailto:)?[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z][A-Z]+)',
@@ -64,8 +64,5 @@ class EmailElement extends LinkableElement {
   int get hashCode => Object.hash(text, originText, url, emailAddress);
 
   @override
-  bool equals(other) =>
-      other is EmailElement &&
-      super.equals(other) &&
-      other.emailAddress == emailAddress;
+  bool equals(other) => other is EmailElement && super.equals(other) && other.emailAddress == emailAddress;
 }
