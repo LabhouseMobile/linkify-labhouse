@@ -41,6 +41,18 @@ void main() {
       [UrlElement("https://www.example.com", "example.com")],
     );
   });
+  test('Parses one digit link', () {
+    expectListEqual(
+      linkify("https://g.co"),
+      [UrlElement("https://g.co", "g.co")],
+    );
+  });
+  test('Parses 5 digit domains', () {
+    expectListEqual(
+      linkify("https://google.design"),
+      [UrlElement("https://google.design", "google.design")],
+    );
+  });
 
   test('Parses only link with no humanize', () {
     expectListEqual(
