@@ -7,7 +7,7 @@ final _urlRegex = RegExp(
 );
 
 final _looseUrlRegex = RegExp(
-  r'''^(.*?)((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//="'`]*))''',
+  r'''^(.*?)((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-z]{2,5}\b([-a-zA-Z0-9@:%_\+.~#?&//="'`]*))''',
   caseSensitive: false,
   dotAll: true,
 );
@@ -26,9 +26,7 @@ class UrlLinkifier extends Linkifier {
 
     for (var element in elements) {
       if (element is TextElement) {
-        var match = options.looseUrl
-            ? _looseUrlRegex.firstMatch(element.text)
-            : _urlRegex.firstMatch(element.text);
+        var match = options.looseUrl ? _looseUrlRegex.firstMatch(element.text) : _urlRegex.firstMatch(element.text);
 
         if (match == null) {
           list.add(element);
@@ -44,8 +42,7 @@ class UrlLinkifier extends Linkifier {
             var originText = originalUrl;
             String? end;
 
-            if ((options.excludeLastPeriod) &&
-                originalUrl[originalUrl.length - 1] == ".") {
+            if ((options.excludeLastPeriod) && originalUrl[originalUrl.length - 1] == ".") {
               end = ".";
               originText = originText.substring(0, originText.length - 1);
               originalUrl = originalUrl.substring(0, originalUrl.length - 1);
@@ -54,8 +51,7 @@ class UrlLinkifier extends Linkifier {
             var url = originalUrl;
 
             if (!originalUrl.startsWith(_protocolIdentifierRegex)) {
-              originalUrl = (options.defaultToHttps ? "https://" : "http://") +
-                  originalUrl;
+              originalUrl = (options.defaultToHttps ? "https://" : "http://") + originalUrl;
             }
 
             if ((options.humanize) || (options.removeWww)) {
@@ -95,8 +91,7 @@ class UrlLinkifier extends Linkifier {
 
 /// Represents an element containing a link
 class UrlElement extends LinkableElement {
-  UrlElement(String url, [String? text, String? originText])
-      : super(text, url, originText);
+  UrlElement(String url, [String? text, String? originText]) : super(text, url, originText);
 
   @override
   String toString() {
